@@ -1,0 +1,16 @@
+[
+{
+  "modid": "thaumcraftaspecthelper",
+  "name": "Thaumcraft Aspect Helper",
+  "description": "Dump the list of the aspects of every compatible stuff",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["boubou_19", "bartimaeusnek"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
