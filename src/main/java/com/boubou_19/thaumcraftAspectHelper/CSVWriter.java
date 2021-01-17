@@ -35,7 +35,7 @@ public class CSVWriter {
          try {
              this.printer.close();
              this.writer.close();
-         } catch (IOException e) {
+         } catch (IOException|NullPointerException e) {
              e.printStackTrace();
          }
      }

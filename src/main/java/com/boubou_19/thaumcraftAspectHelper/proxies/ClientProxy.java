@@ -1,7 +1,6 @@
 package com.boubou_19.thaumcraftAspectHelper.proxies;
 
 import com.boubou_19.thaumcraftAspectHelper.GUIConfig;
-import com.boubou_19.thaumcraftAspectHelper.Helper;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

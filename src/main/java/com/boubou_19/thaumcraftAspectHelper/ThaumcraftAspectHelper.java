@@ -22,6 +22,6 @@ public class ThaumcraftAspectHelper
     public static CommonProxy proxy;
     @Mod.EventHandler
     public void onServerStarted(FMLServerStartedEvent event) {
-       // Helper.run();
+       Helper.runItem("items.csv");
     }
 }

@@ -1,7 +1,10 @@
 package com.boubou_19.thaumcraftAspectHelper;
 
 
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -15,8 +18,8 @@ import java.util.*;
 import static thaumcraft.api.ThaumcraftApi.objectTags;
 
 public class Helper {
-    public static void run(String path) {
-        String absolutePath = Paths.get("").toAbsolutePath().toString()+ File.separator+path+".csv";
+    public static void runAspect(String path) {
+        String absolutePath = Paths.get("").toAbsolutePath().toString()+ File.separator+path;
         System.out.println("Current relative path is: " + absolutePath);
         CSVWriter file = new CSVWriter(absolutePath);
         try {
@@ -57,6 +60,57 @@ public class Helper {
                 e.printStackTrace();
             }
         }
+        file.close();
+    }
+
+    public static void runItem(String path) {
+        String absolutePath = Paths.get("").toAbsolutePath().toString()+ File.separator+path;
+        System.out.println("Current relative path is: " + absolutePath);
+        CSVWriter file = new CSVWriter(absolutePath);
+        try {
+            file.writeToFile("Items;unlocalized names;localized names");
+        } catch (IOException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Set keys = Item.itemRegistry.getKeys();
+        Iterator<Item> it = Item.itemRegistry.iterator();
+        ItemStack itemStack;
+
+        while (it.hasNext()){
+            Item item = it.next();
+            List<ItemStack> itemStackList = new ArrayList<>();
+            try {
+
+                item.getSubItems(item, item.getCreativeTab(), itemStackList);
+
+                Iterator<ItemStack> itItemStack = itemStackList.iterator();
+                while (itItemStack.hasNext()) {
+                    ItemStack is = itItemStack.next();
+                    List<String> listNames = new ArrayList<String>();
+
+                    String itemName = is.toString();
+                    String unlocalizedName = is.getUnlocalizedName();
+                    String displayName = is.getDisplayName();
+
+
+                    listNames.add(itemName);
+                    listNames.add(unlocalizedName);
+                    listNames.add(displayName);
+                    try {
+                        file.writeToFile(String.join(";", listNames));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         file.close();
     }
 }
